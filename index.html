@@ -139,6 +139,8 @@ textarea{min-height:100px;resize:vertical}
 footer{background:var(--steel);color:#B9C0C6;padding:28px 0 calc(28px + env(safe-area-inset-bottom,0px));font-size:14px}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 footer b{color:#fff}
+footer .credit{color:var(--yellow);text-decoration:underline;text-underline-offset:3px}
+footer .credit:hover{color:#fff}
 .wa-float{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;background:var(--wa);color:#fff;border-radius:50px;padding:13px 18px;font-weight:700;text-decoration:none;box-shadow:0 6px 20px #0005;display:flex;gap:8px;align-items:center}
 .wa-float svg{width:20px;height:20px}
 .wa-float{transition:transform .18s ease,background-color .18s ease}
@@ -291,7 +293,7 @@ footer b{color:#fff}
 <footer>
   <div class="wrap">
     <div><b>New J-Teck Lanka</b> · <span data-t="footPlace">ගම්පොළ, ශ්‍රී ලංකාව</span> · 071 409 4946</div>
-    <div>© <span id="yr"></span> New J-Teck Lanka · <span data-t="credit">වෙබ් අඩවිය: Rathna</span></div>
+    <div>© <span id="yr"></span> New J-Teck Lanka · <a class="credit" href="https://wa.me/94701500743" target="_blank" rel="noopener" data-t="credit">වෙබ් අඩවිය: Rathna — ඔබටත් එකක් ඕනද?</a></div>
   </div>
 </footer>
 
@@ -421,11 +423,12 @@ const T = {
   cPhone:"Phone / WhatsApp", cPlace:"Location", cPlaceV:"Gampola, Sri Lanka (map)",
   fTitle:"Quick inquiry", fSub:"Fill in the details. Your message opens in WhatsApp — just press Send.",
   fName:"Your name", fTown:"Town", fMachine:"Machine", fMsg:"Your requirement (size, capacity…)", fSend:"Send on WhatsApp",
-  footPlace:"Gampola, Sri Lanka", credit:"Website by Rathna",
+  footPlace:"Gampola, Sri Lanka", credit:"Website by Rathna — want one too?",
   ask:"Ask on WhatsApp", pick:"Select a machine (optional)", other:"Other / custom machine",
   needName:"Please enter your name.", showing:n=>`Showing ${n} machines`,
   waHello:"Hello New J-Teck Lanka, I would like to make an inquiry.",
   waCustom:"Hello New J-Teck Lanka, I would like to discuss a custom machine.",
+  waDesign:"Hi Rathna, I saw the New J-Teck Lanka website. I would like a website for my business.",
   waMachine:m=>`Hello New J-Teck Lanka, I would like details and a price for the ${m}.`,
   waForm:(n,t,m,x)=>`Hello New J-Teck Lanka. My name is ${n}${t?" from "+t:""}.${m?" Machine: "+m+".":""}${x?" Requirement: "+x:""}`
  }
@@ -447,11 +450,12 @@ T.ta = {
   cPhone:"தொலைபேசி / WhatsApp", cPlace:"இடம்", cPlaceV:"கம்பளை, இலங்கை (வரைபடம்)",
   fTitle:"விரைவு விசாரணை", fSub:"கீழே உள்ள விவரங்களை நிரப்புங்கள். உங்கள் செய்தி WhatsApp-இல் திறக்கும் — Send அழுத்துங்கள்.",
   fName:"உங்கள் பெயர்", fTown:"ஊர்", fMachine:"இயந்திரம்", fMsg:"உங்கள் தேவை (அளவு, கொள்ளளவு…)", fSend:"WhatsApp-இல் அனுப்புங்கள்",
-  footPlace:"கம்பளை, இலங்கை", credit:"இணையதளம்: Rathna",
+  footPlace:"கம்பளை, இலங்கை", credit:"இணையதளம்: Rathna — உங்களுக்கும் வேண்டுமா?",
   ask:"WhatsApp-இல் கேளுங்கள்", pick:"இயந்திரத்தைத் தேர்ந்தெடுங்கள் (விருப்பம்)", other:"வேறு / புதிதாகத் தயாரிக்கும் இயந்திரம்",
   needName:"தயவுசெய்து உங்கள் பெயரை உள்ளிடுங்கள்.", showing:n=>`${n} இயந்திரங்கள் காட்டப்படுகின்றன`,
   waHello:"வணக்கம் New J-Teck Lanka, எனக்கு ஒரு விசாரணை உள்ளது.",
   waCustom:"வணக்கம் New J-Teck Lanka, புதிதாக ஒரு இயந்திரம் தயாரிப்பது பற்றிப் பேச விரும்புகிறேன்.",
+  waDesign:"வணக்கம் Rathna, New J-Teck Lanka இணையதளத்தைப் பார்த்தேன். என் வணிகத்துக்கும் ஒரு இணையதளம் வேண்டும்.",
   waMachine:m=>`வணக்கம் New J-Teck Lanka, ${m} பற்றிய விவரங்களும் விலையும் அறிய விரும்புகிறேன்.`,
   waForm:(n,t,m,x)=>`வணக்கம் New J-Teck Lanka. என் பெயர் ${n}${t?" ("+t+")":""}.${m?" இயந்திரம்: "+m+".":""}${x?" தேவை: "+x:""}`
 };
@@ -461,6 +465,7 @@ Object.assign(T.si,{
   needName:"කරුණාකර ඔබේ නම ඇතුළත් කරන්න.", showing:n=>`මැෂින් ${n}ක් පෙන්වනවා`,
   waHello:"ආයුබෝවන් New J-Teck Lanka, මට විමසීමක් කිරීමට අවශ්‍යයි.",
   waCustom:"ආයුබෝවන් New J-Teck Lanka, මට අලුතින් මැෂිමක් හදා ගැනීම ගැන කතා කරන්න අවශ්‍යයි.",
+  waDesign:"ආයුබෝවන් Rathna, New J-Teck Lanka වෙබ් අඩවිය දැක්කා. මගේ ව්‍යාපාරයටත් වෙබ් අඩවියක් හදා ගන්න කැමතියි.",
   waMachine:m=>`ආයුබෝවන් New J-Teck Lanka, ${m} ගැන විස්තර සහ මිල දැනගන්න කැමතියි.`,
   waForm:(n,t,m,x)=>`ආයුබෝවන් New J-Teck Lanka. මගේ නම ${n}${t?" ("+t+")":""}.${m?" මැෂිම: "+m+".":""}${x?" අවශ්‍යතාව: "+x:""}`
 });
@@ -516,6 +521,7 @@ function applyLang(){
   document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===lang)));
   document.querySelectorAll(".wa-link").forEach(a=>a.href=wa(T[lang].waHello));
   document.querySelectorAll(".wa-custom").forEach(a=>a.href=wa(T[lang].waCustom));
+  document.querySelectorAll(".credit").forEach(a=>a.href="https://wa.me/94701500743?text="+encodeURIComponent(T[lang].waDesign));
   renderChips(); renderGrid(); renderSelect();
 }
 document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>{
